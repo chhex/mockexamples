@@ -3,6 +3,7 @@ package com.example.mock.db;
 import com.example.mock.model.User;
 import java.util.List;
 
+
 /** UserRepository interface for storing @User. */
 public interface UserRepository {
   /**

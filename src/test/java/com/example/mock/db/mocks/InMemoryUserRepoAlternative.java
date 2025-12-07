@@ -13,9 +13,10 @@ public class InMemoryUserRepoAlternative implements UserRepository {
   private final List<User> savedUsers = new ArrayList<>();
 
   /**
-   * @see UserRepository#existsByEmail(String)
-   * checks using @Collection Stream API
-   * @param email
+   * <b>existsByEmail</b>.
+   *
+   * @see UserRepository#existsByEmail(String) checks using @Collection Stream API
+   * @param email email to check
    * @return boolean
    */
   @Override
@@ -25,9 +26,10 @@ public class InMemoryUserRepoAlternative implements UserRepository {
   }
 
   /**
-   * @see UserRepository#save(User)
+   * <b>save</b>.
    *
-   * @param user
+   * @see UserRepository#save(User)
+   * @param user user to save
    */
   @Override
   public void save(User user) {
@@ -35,9 +37,10 @@ public class InMemoryUserRepoAlternative implements UserRepository {
   }
 
   /**
-   * @see UserRepository#getSavedUsers()
+   * <b>getSavedUsers</b>.
    *
-   * @return List<User>
+   * @see UserRepository#getSavedUsers()
+   * @return List of all saved @User
    */
   @Override
   public List<User> getSavedUsers() {

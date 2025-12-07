@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * InMemoryUserRepository An implementation of @UserRepository using in-memory storage in
+ * <b>InMemoryUserRepository</b> is an implementation of @UserRepository using in-memory storage in
  * a @ArrayList. Optimized existsByEmail using a HashSet for faster lookups.
  */
 public class InMemoryUserRepository implements UserRepository {
@@ -15,10 +15,11 @@ public class InMemoryUserRepository implements UserRepository {
   private final List<String> existingEmails = new ArrayList<>();
 
   /**
+   * <b>existsByEmail</b>.
+   *
    * @see UserRepository#existsByEmail(String)
-   * 
-   * @param email
-   * @return boolean
+   * @param email Email to check
+   * @return boolean 
    */
   @Override
   public boolean existsByEmail(String email) {
@@ -26,9 +27,10 @@ public class InMemoryUserRepository implements UserRepository {
   }
 
   /**
+   * <b>save</b>.
+   *
    * @see UserRepository#save(User)
-   * 
-   * @param user
+   * @param user User to save
    */
   @Override
   public void save(User user) {
@@ -37,8 +39,10 @@ public class InMemoryUserRepository implements UserRepository {
   }
 
   /**
+   * <b>getSavedUsers</b>.
+   *
    * @see UserRepository#getSavedUsers()
-   * @return List<User>
+   * @return @List of @User
    */
   @Override
   public List<User> getSavedUsers() {

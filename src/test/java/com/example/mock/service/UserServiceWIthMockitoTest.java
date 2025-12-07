@@ -3,7 +3,9 @@ package com.example.mock.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.example.mock.db.UserRepository;
 import com.example.mock.model.User;
@@ -19,7 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
  * dependencies, @UserRepository and @EmailService.
  */
 @ExtendWith(MockitoExtension.class)
-public class UserServiceWIthMockitoTest {
+public class UserServiceWithMockitoTest {
 
   @Mock UserRepository userRepository;
 
@@ -54,9 +56,6 @@ public class UserServiceWIthMockitoTest {
     verify(emailService).sendWelcomeMail(any(User.class));
   }
 
-  /**
-   * @throws Exception_whenEmailAlreadyExists()
-   */
   @Test
   void throwsException_whenEmailAlreadyExists() {
     // Arrange

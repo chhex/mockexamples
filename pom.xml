@@ -94,8 +94,6 @@
           <configuration>
             <exportDatatables>true</exportDatatables>
             <activeRecipes>
-              <recipe>org.openrewrite.java.format.AutoFormat</recipe>
-              <recipe>org.openrewrite.staticanalysis.CodeCleanup</recipe>
               <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
               <recipe>org.openrewrite.java.dropwizard.CodeCleanup</recipe>
             </activeRecipes>

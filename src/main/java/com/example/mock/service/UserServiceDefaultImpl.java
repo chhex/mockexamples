@@ -17,8 +17,8 @@ public class UserServiceDefaultImpl implements UserService {
   /**
    * Standard user registration process Saves the @User and sends a welcome email.
    *
-   * @param email
-   * @param name
+   * @param email email Address of the new user
+   * @param name name of the new user
    */
   @Override
   public void register(String email, String name) {

@@ -36,9 +36,6 @@ public class UserServiceWithoutMockitoTest {
     assertEquals("test@example.com", mailed.getEmail());
   }
 
-  /**
-   * @throws Exception_whenEmailAlreadyExists()
-   */
   @Test
   void throwsException_whenEmailAlreadyExists() {
     // Arrange
