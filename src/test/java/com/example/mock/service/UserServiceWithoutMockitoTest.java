@@ -1,21 +1,23 @@
-package com.example.mock.db;
+package com.example.mock.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import com.example.mock.db.UserRepository;
+import com.example.mock.db.mocks.InMemoryUserRepoAlternative;
 import com.example.mock.db.mocks.InMemoryUserRepository;
 import com.example.mock.model.User;
 import com.example.mock.service.mocks.FakeEmailService;
-import com.example.mock.service.UserService;
-import com.example.mock.service.UserServiceDefaultImpl;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class UserServiceWithoutMockitoTest {
 
     @Test
     void registersNewUser_andSendsWelcomeMail() {
         // Arrange
-        InMemoryUserRepository userRepository = new InMemoryUserRepository();
-        FakeEmailService emailService = new FakeEmailService();
+        UserRepository userRepository = new InMemoryUserRepoAlternative();
+        EmailService emailService = new FakeEmailService();
         UserService userService = new UserServiceDefaultImpl(userRepository, emailService);
 
         // Act
@@ -35,17 +37,16 @@ public class UserServiceWithoutMockitoTest {
     void throwsException_whenEmailAlreadyExists() {
         // Arrange
         InMemoryUserRepository userRepository = new InMemoryUserRepository();
-        userRepository.addExistingEmail("test@example.com");
-
         FakeEmailService emailService = new FakeEmailService();
         UserService userService = new UserServiceDefaultImpl(userRepository, emailService);
+        userService.register("test@example.com", "Some User");
 
         // Act + Assert
         assertThrows(IllegalArgumentException.class, () ->
-                userService.register("test@example.com", "Test User")
+                userService.register("test@example.com", "Another Test User")
         );
 
-        assertEquals(0, userRepository.getSavedUsers().size());
-        assertEquals(0, emailService.getMailedUsers().size());
+        assertEquals(1, userRepository.getSavedUsers().size());
+        assertEquals(1, emailService.getMailedUsers().size());
     }
 }

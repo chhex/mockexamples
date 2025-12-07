@@ -9,7 +9,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.example.mock.db.UserRepository;
 import com.example.mock.model.User;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,10 +32,20 @@ public class UserServiceWIthMockitoTest {
     void registersNewUser_andSendsWelcomeMail() {
         // Arrange
         when(userRepository.existsByEmail("test@example.com")).thenReturn(false);
-
+        when(userRepository.getSavedUsers()).thenReturn(Arrays.asList(new User("test@example.com"," Test User")));
+        when(emailService.getMailedUsers()).thenReturn(Arrays.asList(new User("test@example.com"," Test User")));
         // Act
         userService.register("test@example.com", "Test User");
 
+
+        // Assert
+        assertEquals(1, userRepository.getSavedUsers().size());
+        User saved = userRepository.getSavedUsers().get(0);
+        assertEquals("test@example.com", saved.getEmail());
+
+        assertEquals(1, emailService.getMailedUsers().size());
+        User mailed = emailService.getMailedUsers().get(0);
+        assertEquals("test@example.com", mailed.getEmail());
         // Assert
         // wurde gespeichert?
         verify(userRepository).save(any(User.class));

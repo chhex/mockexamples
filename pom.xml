@@ -10,8 +10,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>mockexamples</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -109,7 +107,7 @@
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>3.4.0</version>
           <configuration>
-            <configLocation>checkstyle.xml</configLocation>
+            <configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
           </configuration>
         </plugin>
       </plugins>
