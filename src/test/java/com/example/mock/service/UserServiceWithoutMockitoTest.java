@@ -10,6 +10,10 @@ import com.example.mock.model.User;
 import com.example.mock.service.mocks.FakeEmailService;
 import org.junit.jupiter.api.Test;
 
+/**
+ * UserServiceWithoutMockitoTest Unit tests for @UserService without using Mockito, relying on Mock
+ * implementationss of @UserRepository and @Emailservice.
+ */
 public class UserServiceWithoutMockitoTest {
 
   @Test
@@ -32,6 +36,9 @@ public class UserServiceWithoutMockitoTest {
     assertEquals("test@example.com", mailed.getEmail());
   }
 
+  /**
+   * @throws Exception_whenEmailAlreadyExists()
+   */
   @Test
   void throwsException_whenEmailAlreadyExists() {
     // Arrange

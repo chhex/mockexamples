@@ -9,11 +9,17 @@ public class FakeEmailService implements EmailService {
 
   private final List<User> mailedUsers = new ArrayList<>();
 
+  /**
+   * @param user
+   */
   @Override
   public void sendWelcomeMail(User user) {
     mailedUsers.add(user);
   }
 
+  /**
+   * @return List<User>
+   */
   public List<User> getMailedUsers() {
     return mailedUsers;
   }

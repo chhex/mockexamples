@@ -3,6 +3,7 @@ package com.example.mock.service;
 import com.example.mock.db.UserRepository;
 import com.example.mock.model.User;
 
+/** Default implementation of @UserService. */
 public class UserServiceDefaultImpl implements UserService {
 
   private final UserRepository userRepository;
@@ -13,6 +14,12 @@ public class UserServiceDefaultImpl implements UserService {
     this.emailService = emailService;
   }
 
+  /**
+   * Standard user registration process Saves the @User and sends a welcome email.
+   *
+   * @param email
+   * @param name
+   */
   @Override
   public void register(String email, String name) {
     if (userRepository.existsByEmail(email)) {

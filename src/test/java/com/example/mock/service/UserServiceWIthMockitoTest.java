@@ -14,6 +14,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * UserServiceWIthMockitoTest Unit tests for @UserService using Mockito for mocking
+ * dependencies, @UserRepository and @EmailService.
+ */
 @ExtendWith(MockitoExtension.class)
 public class UserServiceWIthMockitoTest {
 
@@ -50,6 +54,9 @@ public class UserServiceWIthMockitoTest {
     verify(emailService).sendWelcomeMail(any(User.class));
   }
 
+  /**
+   * @throws Exception_whenEmailAlreadyExists()
+   */
   @Test
   void throwsException_whenEmailAlreadyExists() {
     // Arrange
