@@ -1,9 +1,10 @@
 package com.example.mock.service.mocks;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.example.mock.model.User;
 import com.example.mock.service.EmailService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FakeEmailService implements EmailService {

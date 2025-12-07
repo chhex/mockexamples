@@ -10,7 +10,7 @@ public class UserServiceDefaultImpl implements UserService {
     private final EmailService emailService;
 
     public UserServiceDefaultImpl(UserRepository userRepository,
-                       EmailService emailService) {
+            EmailService emailService) {
         this.userRepository = userRepository;
         this.emailService = emailService;
     }

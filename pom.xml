@@ -15,6 +15,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
+    <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
+    <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
   </properties>
 
   <dependencies>
@@ -90,9 +92,14 @@
           <artifactId>rewrite-maven-plugin</artifactId>
           <version>6.25.0</version>
           <configuration>
+            <exportDatatables>true</exportDatatables>
             <activeRecipes>
+              <recipe>org.openrewrite.java.format.AutoFormat</recipe>
               <recipe>org.openrewrite.staticanalysis.CodeCleanup</recipe>
+              <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
+              <recipe>org.openrewrite.java.dropwizard.CodeCleanup</recipe>
             </activeRecipes>
+            <checkstyleConfigFile>${basedir}/src/main/resources/google_checks.xml</checkstyleConfigFile>
           </configuration>
           <dependencies>
             <dependency>
@@ -100,16 +107,42 @@
               <artifactId>rewrite-static-analysis</artifactId>
               <version>2.23.0</version>
             </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-rewrite</artifactId>
+              <version>0.16.1</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-dropwizard</artifactId>
+              <version>0.8.2</version>
+            </dependency>
           </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>3.4.0</version>
+
           <configuration>
-            <configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
+            <compileClasspath>true</compileClasspath>
+            <configLocation>google_checks.xml</configLocation>
+            <failOnViolation>false</failOnViolation>
+            <consoleOutput>true</consoleOutput>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
           </configuration>
+          <executions>
+            <execution>
+              <id>validate</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
+
+
       </plugins>
     </pluginManagement>
   </build>

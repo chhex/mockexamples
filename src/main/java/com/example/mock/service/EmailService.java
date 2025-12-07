@@ -1,8 +1,11 @@
 package com.example.mock.service;
-import java.util.List;
 
 import com.example.mock.model.User;
+
+import java.util.List;
+
 public interface EmailService {
     void sendWelcomeMail(User user);
+
     List<User> getMailedUsers();
 }

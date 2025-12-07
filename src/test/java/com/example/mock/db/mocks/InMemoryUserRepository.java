@@ -1,9 +1,10 @@
 package com.example.mock.db.mocks;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.example.mock.db.UserRepository;
 import com.example.mock.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InMemoryUserRepository implements UserRepository {
 

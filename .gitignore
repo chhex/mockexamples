@@ -13,7 +13,7 @@ out/
 
 # VS Code
 .vscode/
-
+*.code-workspace
 # MacOS
 .DS_Store
 

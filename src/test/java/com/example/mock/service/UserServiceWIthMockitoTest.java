@@ -1,20 +1,19 @@
 package com.example.mock.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+import com.example.mock.db.UserRepository;
+import com.example.mock.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.example.mock.db.UserRepository;
-import com.example.mock.model.User;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceWIthMockitoTest {
@@ -32,8 +31,8 @@ public class UserServiceWIthMockitoTest {
     void registersNewUser_andSendsWelcomeMail() {
         // Arrange
         when(userRepository.existsByEmail("test@example.com")).thenReturn(false);
-        when(userRepository.getSavedUsers()).thenReturn(Arrays.asList(new User("test@example.com"," Test User")));
-        when(emailService.getMailedUsers()).thenReturn(Arrays.asList(new User("test@example.com"," Test User")));
+        when(userRepository.getSavedUsers()).thenReturn(Arrays.asList(new User("test@example.com", " Test User")));
+        when(emailService.getMailedUsers()).thenReturn(Arrays.asList(new User("test@example.com", " Test User")));
         // Act
         userService.register("test@example.com", "Test User");
 
