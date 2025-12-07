@@ -1,2 +1,2 @@
-# Mock Implementation / Mockito Trade - off Exampels
+Mock Implementation / Mockito Trade - off Examples
 
